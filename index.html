@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías | Mi Tienda</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+            color: #222;
+        }
+
+        .categorias-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .categorias-container h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .descripcion {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .buscador {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .categorias-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .categoria {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 3px 12px #0000000d;
+            border: 1px solid #eee;
+        }
+
+        .categoria h2 {
+            font-size: 20px;
+            margin-top: 0;
+            color: #183153;
+        }
+
+        .categoria button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px;
+            margin: 6px 0;
+            border: none;
+            border-radius: 6px;
+            background: #f0f3f8;
+            color: #222;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .categoria button:hover {
+            background: #dce8fa;
+        }
+
+        .categoria button.activa {
+            background: #183153;
+            color: white;
+        }
+
+        .detalle {
+            margin-top: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .detalle h2 {
+            margin-top: 0;
+        }
+
+        .sin-resultados {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .categorias-container {
+                margin: 15px auto;
+                padding: 15px;
+            }
+
+            .categorias-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<section class="categorias-container">
+
+    <h1>Explora nuestras categorías</h1>
+
+    <p class="descripcion">
+        Encuentra los productos que necesitas en un solo lugar.
+    </p>
+
+    <input
+        type="search"
+        id="buscador"
+        class="buscador"
+        placeholder="Buscar categorías o subcategorías..."
+        aria-label="Buscar categorías"
+    >
+
+    <div class="categorias-grid" id="categorias">
+
+        <!-- CATEGORIA 1 -->
+        <div class="categoria">
+            <h2>🏢 Oficina</h2>
+            <button data-nombre="Escritorios">Escritorios</button>
+            <button data-nombre="Sillas de oficina">Sillas de oficina</button>
+            <button data-nombre="Ordenadores y portátiles">Ordenadores y portátiles</button>
+            <button data-nombre="Impresoras y escáneres">Impresoras y escáneres</button>
+            <button data-nombre="Papelería">Papelería</button>
+            <button data-nombre="Accesorios de oficina">Accesorios de oficina</button>
+        </div>
+
+        <!-- CATEGORIA 2 -->
+        <div class="categoria">
+            <h2>🏠 Casa y hogar</h2>
+            <button data-nombre="Muebles">Muebles</button>
+            <button data-nombre="Cocina y utensilios">Cocina y utensilios</button>
+            <button data-nombre="Decoración">Decoración</button>
+            <button data-nombre="Iluminación">Iluminación</button>
+            <button data-nombre="Limpieza del hogar">Limpieza del hogar</button>
+            <button data-nombre="Dormitorio y baño">Dormitorio y baño</button>
+        </div>
+
+        <!-- CATEGORIA 3 -->
+        <div class="categoria">
+            <h2>🍎 Alimentación</h2>
+            <button data-nombre="Frutas y verduras">Frutas y verduras</button>
+            <button data-nombre="Bebidas">Bebidas</button>
+            <button data-nombre="Productos envasados">Productos envasados</button>
+            <button data-nombre="Cereales y legumbres">Cereales y legumbres</button>
+            <button data-nombre="Dulces y snacks">Dulces y snacks</button>
+            <button data-nombre="Alimentos básicos">Alimentos básicos</button>
+        </div>
+
+        <!-- CATEGORIA 4 -->
+        <div class="categoria">
+            <h2>💻 Tecnología</h2>
+            <button data-nombre="Teléfonos móviles">Teléfonos móviles</button>
+            <button data-nombre="Computación">Computación</button>
+            <button data-nombre="Televisores y audio">Televisores y audio</button>
+            <button data-nombre="Accesorios electrónicos">Accesorios electrónicos</button>
+        </div>
+
+        <!-- CATEGORIA 5 -->
+        <div class="categoria">
+            <h2>👕 Ropa y accesorios</h2>
+            <button data-nombre="Ropa para hombre">Ropa para hombre</button>
+            <button data-nombre="Ropa para mujer">Ropa para mujer</button>
+            <button data-nombre="Ropa infantil">Ropa infantil</button>
+            <button data-nombre="Calzado">Calzado</button>
+            <button data-nombre="Bolsos y accesorios">Bolsos y accesorios</button>
+        </div>
+
+        <!-- CATEGORIA 6 -->
+        <div class="categoria">
+            <h2>🐾 Mascotas</h2>
+            <button data-nombre="Alimentación para mascotas">Alimentación para mascotas</button>
+            <button data-nombre="Juguetes para mascotas">Juguetes para mascotas</button>
+            <button data-nombre="Accesorios para mascotas">Accesorios para mascotas</button>
+            <button data-nombre="Higiene para mascotas">Higiene para mascotas</button>
+        </div>
+
+    </div>
+
+    <p id="sinResultados" class="sin-resultados">
+        No se encontraron categorías o subcategorías.
+    </p>
+
+    <div class="detalle" id="detalle" aria-live="polite">
+        <h2>Bienvenido a nuestra tienda</h2>
+        <p>
+            Selecciona una subcategoría para comenzar a explorar
+            los productos disponibles.
+        </p>
+    </div>
+
+</section>
+
+<script>
+    const buscador = document.getElementById("buscador");
+    const tarjetas = document.querySelectorAll(".categoria");
+    const botones = document.querySelectorAll(".categoria button");
+    const detalle = document.getElementById("detalle");
+    const sinResultados = document.getElementById("sinResultados");
+
+    // Buscar categorías y subcategorías
+    buscador.addEventListener("input", function () {
+        const texto = this.value
+            .toLocaleLowerCase("es")
+            .trim();
+
+        let resultados = 0;
+
+        tarjetas.forEach(function (tarjeta) {
+            const titulo = tarjeta.querySelector("h2");
+            const botonesTarjeta = tarjeta.querySelectorAll("button");
+
+            const coincideTitulo = titulo.textContent
+                .toLocaleLowerCase("es")
+                .includes(texto);
+
+            let coincideBoton = false;
+
+            botonesTarjeta.forEach(function (boton) {
+                const coincide = boton.dataset.nombre
+                    .toLocaleLowerCase("es")
+                    .includes(texto);
+
+                boton.style.display =
+                    (!texto || coincideTitulo || coincide)
+                        ? "block"
+                        : "none";
+
+                if (coincide) {
+                    coincideBoton = true;
+                }
+            });
+
+            const mostrar =
+                !texto || coincideTitulo || coincideBoton;
+
+            tarjeta.style.display = mostrar ? "block" : "none";
+
+            if (mostrar) {
+                resultados++;
+            }
+        });
+
+        sinResultados.style.display =
+            resultados === 0 ? "block" : "none";
+    });
+
+    // Seleccionar una subcategoría
+    botones.forEach(function (boton) {
+        boton.addEventListener("click", function () {
+            botones.forEach(function (otroBoton) {
+                otroBoton.classList.remove("activa");
+            });
+
+            this.classList.add("activa");
+
+            const categoria = this.closest(".categoria")
+                .querySelector("h2").textContent;
+
+            const subcategoria = this.dataset.nombre;
+
+            detalle.innerHTML = "";
+
+            const titulo = document.createElement("h2");
+            titulo.textContent = subcategoria;
+
+            const ruta = document.createElement("p");
+            ruta.textContent =
+                "Categoría: " + categoria +
+                " / Subcategoría: " + subcategoria;
+
+            const mensaje = document.createElement("p");
+            mensaje.textContent =
+                "Aquí aparecerán los productos de esta sección cuando los conectes a tu catálogo.";
+
+            detalle.appendChild(titulo);
+            detalle.appendChild(ruta);
+            detalle.appendChild(mensaje);
+
+            detalle.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
